@@ -1,6 +1,7 @@
 import React from 'react';
 import Comment from './Comment';
 import camelcaseKeys from 'camelcase-keys';
+import CommentForm from './CommentForm';
 
 class CommentContainer extends React.Component {
 
@@ -15,11 +16,25 @@ class CommentContainer extends React.Component {
       this.setState({comments: camelcaseKeys(data)})
     })
   }
+  
+
+  addComment = (comment) => {
+    this.setState(state => {
+      return {
+        comments: [...state.comments, comment]
+      }
+    })
+  }
 
   render() {
     return (
-      <div className="ui container comments">
-        {this.state.comments.map(c => <Comment comment={c} />)}
+      <div>
+        <div className="ui container comments">
+          {this.state.comments.map(c => <Comment comment={c} />)}
+        </div>
+        <div>
+         <CommentForm addComment={this.addComment} />
+       </div>
       </div>
     )
   }
