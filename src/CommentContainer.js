@@ -6,7 +6,8 @@ import CommentForm from './CommentForm';
 class CommentContainer extends React.Component {
 
   state = {
-    comments: []
+    comments: [],
+    error: ""
   }
 
   componentDidMount() {
@@ -14,6 +15,9 @@ class CommentContainer extends React.Component {
     .then(res =>res.json())
     .then(data => {
       this.setState({comments: camelcaseKeys(data)})
+    })
+    .catch(err => {
+      this.setState({error: error.message})
     })
   }
   
@@ -29,9 +33,13 @@ class CommentContainer extends React.Component {
   render() {
     return (
       <div>
-        <div className="ui container comments">
-          {this.state.comments.map(c => <Comment comment={c} />)}
-        </div>
+        {this.state.error ? 
+          <div>Error: {this.state.error}</div>
+          :
+          <div className="ui container comments">
+            {this.state.comments.map(c => <Comment comment={c} />)}
+          </div>
+        }
         <div>
          <CommentForm addComment={this.addComment} />
        </div>
