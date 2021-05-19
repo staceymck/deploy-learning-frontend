@@ -17,7 +17,7 @@ class CommentContainer extends React.Component {
       this.setState({comments: camelcaseKeys(data)})
     })
     .catch(err => {
-      this.setState({error: error.message})
+      this.setState({error: err.message})
     })
   }
   
