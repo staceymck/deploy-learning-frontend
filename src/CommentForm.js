@@ -42,9 +42,9 @@ class CommentForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <h1>Add a new comment:</h1>
-        <label hmtlFor="username">Username:</label>
+        <label htmlFor="username">Username:</label>
         <input type="text" name="username" value={this.state.username} onChange={this.handleChange} />
-        <label hmtlFor="content">Comment:</label>
+        <label htmlFor="content">Comment:</label>
         <input type="text" name="content" value={this.state.content} onChange={this.handleChange} />
         <input type="submit" />
       </form>
