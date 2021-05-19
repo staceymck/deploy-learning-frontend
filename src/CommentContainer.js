@@ -11,7 +11,7 @@ class CommentContainer extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:3000/comments")
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/comments`)
     .then(res =>res.json())
     .then(data => {
       this.setState({comments: camelcaseKeys(data)})
