@@ -11,7 +11,6 @@ class CommentContainer extends React.Component {
   }
 
   componentDidMount() {
-    console.log(process.env.REACT_APP_API_ENDPOINT)
     fetch(`${process.env.REACT_APP_API_ENDPOINT}/comments`)
     .then(res =>res.json())
     .then(data => {

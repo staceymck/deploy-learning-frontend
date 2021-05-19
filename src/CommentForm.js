@@ -28,7 +28,7 @@ class CommentForm extends React.Component {
       body: JSON.stringify(this.state)
     }
 
-    fetch("http://localhost:3000/comments", configObj)
+    fetch(`${process.env.REACT_APP_API_ENDPOINT}/comments`, configObj)
     .then(res => res.json())
     .then(data => {
       this.props.addComment(data)
