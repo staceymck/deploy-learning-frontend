@@ -1,7 +1,9 @@
 import React from 'react';
-import Comment from './Comment';
 import camelcaseKeys from 'camelcase-keys';
+import axios from 'axios'; //convention to import third-party packages above my components
+import Comment from './Comment';
 import CommentForm from './CommentForm';
+
 
 class CommentContainer extends React.Component {
 
@@ -10,11 +12,21 @@ class CommentContainer extends React.Component {
     error: ""
   }
 
+  // componentDidMount() {
+  //   fetch(`${process.env.REACT_APP_API_ENDPOINT}/comments`)
+  //   .then(res =>res.json())
+  //   .then(data => {
+  //     this.setState({comments: camelcaseKeys(data)})
+  //   })
+  //   .catch(err => {
+  //     this.setState({error: err.message})
+  //   })
+  // }
+
   componentDidMount() {
-    fetch(`${process.env.REACT_APP_API_ENDPOINT}/comments`)
-    .then(res =>res.json())
-    .then(data => {
-      this.setState({comments: camelcaseKeys(data)})
+    axios.get(`${process.env.REACT_APP_API_ENDPOINT}/comments`)
+    .then(res => {
+      this.setState({comments: camelcaseKeys(res.data)})
     })
     .catch(err => {
       this.setState({error: err.message})
