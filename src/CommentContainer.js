@@ -47,7 +47,7 @@ class CommentContainer extends React.Component {
       error: error
     })
   }
-  
+
   render() {
     return (
       <div>
@@ -55,7 +55,7 @@ class CommentContainer extends React.Component {
           <div>Error: {this.state.error}</div>
           :
           <div className="ui container comments">
-            {this.state.comments.map(c => <Comment comment={c} />)}
+            {this.state.comments.map(c => <Comment key={c.id} comment={c} />)}
           </div>
         }
         <div>
