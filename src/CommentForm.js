@@ -44,7 +44,7 @@ class CommentForm extends React.Component {
     axios
       .post(`${process.env.REACT_APP_API_ENDPOINT}/comments`, comment)
       .then(res => this.props.addComment(res.data))
-      .catch(error => console.log(error))
+      .catch(error => this.props.handleError(error.message))
     
     this.setState(this.getInitialState())
   }

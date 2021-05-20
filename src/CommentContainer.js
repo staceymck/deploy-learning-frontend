@@ -41,7 +41,13 @@ class CommentContainer extends React.Component {
       }
     })
   }
-
+  
+  displayError = (error) => {
+    this.setState({
+      error: error
+    })
+  }
+  
   render() {
     return (
       <div>
@@ -53,7 +59,7 @@ class CommentContainer extends React.Component {
           </div>
         }
         <div>
-         <CommentForm addComment={this.addComment} />
+         <CommentForm addComment={this.addComment} handleError={this.displayError} />
        </div>
       </div>
     )
