@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class CommentForm extends React.Component {
 
@@ -19,21 +20,31 @@ class CommentForm extends React.Component {
   handleSubmit = (event) => {
     event.preventDefault()
 
-    const configObj = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json'
-      },
-      body: JSON.stringify(this.state)
+    // const configObj = {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     Accept: 'application/json'
+    //   },
+    //   body: JSON.stringify(this.state)
+    // }
+
+    // fetch(`${process.env.REACT_APP_API_ENDPOINT}/comments`, configObj)
+    // .then(res => res.json())
+    // .then(data => {
+    //   this.props.addComment(data)
+    // })
+    // .catch(error => console.log(error))
+
+    const comment = {
+      content: this.state.content,
+      username: this.state.username
     }
 
-    fetch(`${process.env.REACT_APP_API_ENDPOINT}/comments`, configObj)
-    .then(res => res.json())
-    .then(data => {
-      this.props.addComment(data)
-    })
-    .catch(error => console.error(error))
+    axios
+      .post(`${process.env.REACT_APP_API_ENDPOINT}/comments`, comment)
+      .then(res => this.props.addComment(res.data))
+      .catch(error => console.log(error))
     
     this.setState(this.getInitialState())
   }
